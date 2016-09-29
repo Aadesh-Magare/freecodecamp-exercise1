@@ -5,6 +5,6 @@ var app = express()
 app.get("/", function(req, res){
     res.send("Hello man")
 })
-app.listen(8080, function(){
+app.listen(process.env.PORT || 8080, function(){
     console.log("listening")
 });
