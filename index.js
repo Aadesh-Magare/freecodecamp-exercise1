@@ -2,6 +2,11 @@ var express = require("express")
 var port = process.env.PORT || 8080;
 var app = express()
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
+
 app.get("/:timeString", function(req, res){
     var par = req.params.timeString;
     // console.log(par)
@@ -20,7 +25,9 @@ app.get("/:timeString", function(req, res){
         }
         res.end(JSON.stringify(NatDate));
     }
-
+})
+app.get("/", function(req, res){
+    res.render("index.html");
 })
 app.listen(port, function(){
     console.log("listening on " + port)
